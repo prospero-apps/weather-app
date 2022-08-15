@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  font-size: 5em;
+  font-family: 'Roboto';
+}
+
+#content {
+  background: url('./images/mountains-ga923d27b0_1280.png');
+  background-size: cover;
+  height: 100vh;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 2fr 0.5fr 1fr;
+  height: 100%;
+  gap: 10px;
+  padding: 10px;
+}
+
+#temperature-panel,
+#location-panel,
+#stats-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border: 2px solid black;
+}
+
+#nav-panel {
+  display: flex;
+  grid-column: 1 / 4;
+  height: 100%;
+  width: 100%;
+  border: 2px solid black;
+}
+
+#week-panel,
+#hour-panel {
+  display: flex;
+  grid-column: 1 / 4;
+  height: 100%;
+  width: 100%;
+  border: 2px solid black;
+}
+
