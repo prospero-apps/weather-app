@@ -1,7 +1,7 @@
 import SearchIcon from './icons/magnify.png';
 import FeelsLikeIcon from './icons/thermometer-lines.png';
 import WindSpeedIcon from './icons/weather-windy.png';
-import RainChanceIcon from './icons/weather-rainy.png';
+import PressureIcon from './icons/gauge.png';
 import HumidityIcon from './icons/water-percent.png';
 
 // helper functions
@@ -63,14 +63,14 @@ const windSpeedLabel = add(windSpeed, 'wind-speed-label');
 windSpeedLabel.textContent = 'Wind Speed';
 export const windSpeedValue = add(windSpeed, 'wind-speed-value');
 
-const rainChance = add(statsPanel, 'rain-chance');
-export const rainChanceImage = add(rainChance, 'rain-chance-icon');
-const rainChanceIcon = new Image();
-rainChanceIcon.src = RainChanceIcon;
-rainChanceImage.appendChild(rainChanceIcon);
-const rainChanceLabel = add(rainChance, 'rain-chance-label');
-rainChanceLabel.textContent = 'Chance of Rain';
-export const rainChanceValue = add(rainChance, 'rain-chance-value');
+const pressure = add(statsPanel, 'pressure');
+export const pressureImage = add(pressure, 'pressure-icon');
+const pressureIcon = new Image();
+pressureIcon.src = PressureIcon;
+pressureImage.appendChild(pressureIcon);
+const pressureLabel = add(pressure, 'pressure-label');
+pressureLabel.textContent = 'Pressure';
+export const pressureValue = add(pressure, 'pressure-value');
 
 const humidity = add(statsPanel, 'humidity');
 export const humidityImage = add(humidity, 'humidity-icon');
