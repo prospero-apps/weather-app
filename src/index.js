@@ -21,7 +21,6 @@ import {
   windSpeedValue,
   rainChanceValue,
   humidityValue,
-  dayPanel,
   weekPanel,
 } from './dom';
 
@@ -51,21 +50,8 @@ windSpeedValue.textContent = '28.6 km/h';
 rainChanceValue.textContent = '0.6%';
 humidityValue.textContent = '84%';
 
-// day panel
-for (let i = 0; i < 24; i++) {
-  const hourContainer = addItem(dayPanel, 'hour-container');
-  const hour = addItem(hourContainer, 'hour');
-  hour.textContent = '9 pm';
-  const hourTemperature = addItem(hourContainer, 'hour-temperature');
-  hourTemperature.textContent = '20°C';
-  const hourIcon = new Image();
-  hourIcon.className = 'hour-icon';
-  hourIcon.src = CloudyIcon;
-  hourContainer.appendChild(hourIcon);
-}
-
 // week panel
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < 7; i++) {
   const dayContainer = addItem(weekPanel, 'week-container');
   const day = addItem(dayContainer, 'day');
   day.textContent = 'Thursday';

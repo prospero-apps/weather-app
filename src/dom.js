@@ -18,7 +18,6 @@ const container = add(content, 'container');
 const locationPanel = add(container, 'location-panel');
 const temperaturePanel = add(container, 'temperature-panel');
 const statsPanel = add(container, 'stats-panel');
-export const dayPanel = add(container, 'day-panel');
 export const weekPanel = add(container, 'week-panel');
 
 /* LOCATION PANEL */
@@ -34,8 +33,9 @@ searchIcon.src = SearchIcon;
 searchImage.appendChild(searchIcon);
 
 /* TEMPERATURE PANEL */
-export const description = add(temperaturePanel, 'description');
-export const weatherImage = add(temperaturePanel, 'weather-icon');
+const descriptionPanel = add(temperaturePanel, 'description-panel');
+export const description = add(descriptionPanel, 'description');
+export const weatherImage = add(descriptionPanel, 'weather-icon');
 export const temperature = add(temperaturePanel, 'temperature');
 const scale = add(temperaturePanel, 'scale');
 export const scaleF = add(scale, 'scaleF', 'button');
@@ -80,7 +80,3 @@ humidityImage.appendChild(humidityIcon);
 const humidityLabel = add(humidity, 'humidity-label');
 humidityLabel.textContent = 'Humidity';
 export const humidityValue = add(humidity, 'humidity-value');
-
-/* DAY PANEL */
-
-/* WEEK PANEL */
