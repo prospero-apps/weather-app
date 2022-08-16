@@ -42,7 +42,7 @@ export const scaleF = add(scale, 'scaleF', 'button');
 scaleF.textContent = '°F';
 export const scaleC = add(scale, 'scaleC', 'button');
 scaleC.textContent = '°C';
-export const gif = add(temperaturePanel, 'gif');
+export const gif = add(scale, 'gif', 'img');
 
 /* STATS PANEL */
 const feelsLike = add(statsPanel, 'feels-like');

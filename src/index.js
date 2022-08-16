@@ -42,7 +42,6 @@ const weatherIcon = new Image();
 weatherIcon.src = CloudyIcon;
 weatherImage.appendChild(weatherIcon);
 temperature.textContent = '24°C';
-gif.textContent = 'GIF';
 
 // stats panel
 feelsLikeValue.textContent = '22°C';
@@ -62,3 +61,22 @@ for (let i = 0; i < 7; i++) {
   dayIcon.src = CloudyIcon;
   dayContainer.appendChild(dayIcon);
 }
+
+async function getGif(keyword) {
+  fetch(
+    'https://api.giphy.com/v1/gifs/translate?api_key=W7cKIBKFMbbAP5dAAkviacBwQNLWQZR6&s=new%20york',
+    { mode: 'cors' },
+  )
+    .then((response) => response.json())
+    .then((response) => {
+      gif.src = response.data.images.original.url;
+    });
+}
+
+getGif('New York');
+
+/// API KEY maps
+// 48f6a27fca74b448539664c245fa0a54
+
+/// API KEY giphy
+// `https://api.giphy.com/v1/gifs/translate?api_key=W7cKIBKFMbbAP5dAAkviacBwQNLWQZR6&s=london`

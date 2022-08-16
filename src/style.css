@@ -120,6 +120,10 @@ search-icon:active {
   transform: scale(.9);
 }
 
+#gif {
+  width: 200px;  
+}
+
 /* STATS PANEL */
 #feels-like,
 #wind-speed,
