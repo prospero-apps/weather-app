@@ -77,6 +77,7 @@ search-icon:active {
 
 #gif {
   width: 90%;
+  max-height: 50%;
   margin: 10px;
 }
 
@@ -193,6 +194,7 @@ search-icon:active {
 
 .day-icon {
   width: min-content;
+  background-color: gray;
 }
 
 @media only screen and (max-width: 800px) {

@@ -16,8 +16,8 @@ const content = document.getElementById('content');
 /* MAIN CONTAINER */
 const container = add(content, 'container');
 const locationPanel = add(container, 'location-panel');
-const temperaturePanel = add(container, 'temperature-panel');
-const statsPanel = add(container, 'stats-panel');
+export const temperaturePanel = add(container, 'temperature-panel');
+export const statsPanel = add(container, 'stats-panel');
 export const weekPanel = add(container, 'week-panel');
 
 /* LOCATION PANEL */
