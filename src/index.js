@@ -7,6 +7,8 @@ import {
   description,
   weatherImage,
   temperature,
+  scaleF,
+  scaleC,
   gif,
   feelsLikeValue,
   windSpeedValue,
@@ -38,10 +40,15 @@ function formatDate(timezone) {
   return { date, time };
 }
 
-function celsiusToFahrenheit(celsius) {
-  return Math.round(celsius * 1.8 + 32);
+function toCelsius(temp) {
+  return Math.round(temp - 273.15);
 }
 
+function toFahrenheit(temp) {
+  return Math.round(toCelsius(temp) * 1.8 + 32);
+}
+
+// LOAD GIF
 async function getGif(location) {
   fetch(
     `https://api.giphy.com/v1/gifs/translate?api_key=W7cKIBKFMbbAP5dAAkviacBwQNLWQZR6&s=${location}`,
@@ -77,11 +84,10 @@ async function getData(location) {
   const weatherIcon = new Image();
   weatherIcon.src = icon.url;
   weatherImage.appendChild(weatherIcon);
-  const celsiusTemperature = Math.round(data.main.temp - 273.15);
-  temperature.textContent = `${celsiusTemperature}°C`;
+  temperature.textContent = `${toCelsius(data.main.temp)}°C`;
 
   // stats panel
-  feelsLikeValue.textContent = `${Math.round(data.main.feels_like - 273.15)}°C`;
+  feelsLikeValue.textContent = `${toCelsius(data.main.feels_like)}°C`;
   windSpeedValue.textContent = `${data.wind.speed} km/h`;
   pressureValue.textContent = `${data.main.pressure} hPa`;
   humidityValue.textContent = `${data.main.humidity}%`;
@@ -110,7 +116,8 @@ async function getData(location) {
     const day = addItem(dayContainer, 'day');
     day.textContent = days[i].dt_txt;
     const dayTemperature = addItem(dayContainer, 'day-temperature');
-    dayTemperature.textContent = `${Math.round(days[i].main.temp - 273.15)}°C`;
+    dayTemperature.textContent = `${toCelsius(days[i].main.temp)}°C`;
+    dayTemperature.dataset.temp = days[i].main.temp;
     const dayDescription = addItem(dayContainer, 'day-description');
     dayDescription.textContent = days[i].weather[0].description;
 
@@ -124,6 +131,33 @@ async function getData(location) {
     dayIcon.src = icon.url;
     dayContainer.appendChild(dayIcon);
   }
+
+  // event listeners
+  const dayTemperatures = document.querySelectorAll('.day-temperature');
+
+  scaleF.addEventListener('click', () => {
+    temperature.textContent = `${toFahrenheit(data.main.temp)}°F`;
+    feelsLikeValue.textContent = `${toFahrenheit(data.main.feels_like)}°F`;
+
+    dayTemperatures.forEach((t) => {
+      t.textContent = `${toFahrenheit(t.dataset.temp)}°F`;
+    });
+
+    scaleF.className = 'clicked';
+    scaleC.classList.remove('clicked');
+  });
+
+  scaleC.addEventListener('click', () => {
+    temperature.textContent = `${toCelsius(data.main.temp)}°C`;
+    feelsLikeValue.textContent = `${toCelsius(data.main.feels_like)}°C`;
+
+    dayTemperatures.forEach((t) => {
+      t.textContent = `${toCelsius(t.dataset.temp)}°C`;
+    });
+
+    scaleC.className = 'clicked';
+    scaleF.classList.remove('clicked');
+  });
 }
 
 getGif('New York');

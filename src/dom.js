@@ -31,6 +31,7 @@ export const searchImage = add(searchPanel, 'search-icon');
 const searchIcon = new Image();
 searchIcon.src = SearchIcon;
 searchImage.appendChild(searchIcon);
+export const gif = add(locationPanel, 'gif', 'img');
 
 /* TEMPERATURE PANEL */
 const descriptionPanel = add(temperaturePanel, 'description-panel');
@@ -42,7 +43,7 @@ export const scaleF = add(scale, 'scaleF', 'button');
 scaleF.textContent = '°F';
 export const scaleC = add(scale, 'scaleC', 'button');
 scaleC.textContent = '°C';
-export const gif = add(scale, 'gif', 'img');
+scaleC.className = 'clicked';
 
 /* STATS PANEL */
 const feelsLike = add(statsPanel, 'feels-like');
