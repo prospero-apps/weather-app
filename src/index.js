@@ -37,7 +37,7 @@ function formatDate(timezone) {
   const year = localTime.getFullYear();
 
   const date = `${dayName}, ${month} ${day}, ${year}`;
-  const time = `${localTime.getHours()}:${localTime.getMinutes()}`;
+  const time = `${localTime.getHours()}:${localTime.getMinutes().toString().padStart(2, '0')}`;
 
   return { date, time };
 }
@@ -104,12 +104,15 @@ async function getData(location) {
   );
 
   const forecastData = await forecast.json();
+  const firstItem = forecastData.list.find((element) => element.dt_txt.substring(11, 13) === '12');
+  const firstItemIndex = forecastData.list.indexOf(firstItem);
+
   days = [
-    forecastData.list[4],
-    forecastData.list[12],
-    forecastData.list[20],
-    forecastData.list[28],
-    forecastData.list[36],
+    forecastData.list[firstItemIndex],
+    forecastData.list[firstItemIndex + 8],
+    forecastData.list[firstItemIndex + 16],
+    forecastData.list[firstItemIndex + 24],
+    forecastData.list[firstItemIndex + 32],
   ];
 
   // week panel
