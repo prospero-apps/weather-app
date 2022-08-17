@@ -10,12 +10,14 @@
 body {
   margin: 0;
   font-family: 'Roboto';
+  min-height: 100vh;
+  background: url('./images/mountains-ga923d27b0_1280.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #content {
-  background: url('./images/mountains-ga923d27b0_1280.png');
-  background-size: cover;
-  height: 100vh;
   min-width: 700px;
 }
 
@@ -76,8 +78,8 @@ search-icon:active {
 }
 
 #gif {
-  width: 90%;
-  max-height: 50%;
+  max-width: 90%;
+  max-height: 150px;
   margin: 10px;
 }
 
