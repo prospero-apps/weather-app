@@ -4,6 +4,8 @@ import {
   city,
   todayDate,
   todayTime,
+  searchInput,
+  searchImage,
   description,
   weatherImage,
   temperature,
@@ -48,6 +50,10 @@ function toFahrenheit(temp) {
   return Math.round(toCelsius(temp) * 1.8 + 32);
 }
 
+// initialization
+const weatherIcon = new Image();
+let days = [];
+
 // LOAD GIF
 async function getGif(location) {
   fetch(
@@ -81,7 +87,6 @@ async function getData(location) {
 
   // temperature panel
   description.textContent = data.weather[0].description;
-  const weatherIcon = new Image();
   weatherIcon.src = icon.url;
   weatherImage.appendChild(weatherIcon);
   temperature.textContent = `${toCelsius(data.main.temp)}°C`;
@@ -99,7 +104,7 @@ async function getData(location) {
   );
 
   const forecastData = await forecast.json();
-  const days = [
+  days = [
     forecastData.list[4],
     forecastData.list[12],
     forecastData.list[20],
@@ -107,30 +112,27 @@ async function getData(location) {
     forecastData.list[36],
   ];
 
-  // console.log(data);
-  console.log(forecastData);
-
   // week panel
-  for (let i = 0; i < 5; i++) {
-    const dayContainer = addItem(weekPanel, 'week-container');
+  days.forEach(async (d) => {
+    const dayContainer = addItem(weekPanel, 'day-container');
     const day = addItem(dayContainer, 'day');
-    day.textContent = days[i].dt_txt;
+    day.textContent = d.dt_txt;
     const dayTemperature = addItem(dayContainer, 'day-temperature');
-    dayTemperature.textContent = `${toCelsius(days[i].main.temp)}°C`;
-    dayTemperature.dataset.temp = days[i].main.temp;
+    dayTemperature.textContent = `${toCelsius(d.main.temp)}°C`;
+    dayTemperature.dataset.temp = d.main.temp;
     const dayDescription = addItem(dayContainer, 'day-description');
-    dayDescription.textContent = days[i].weather[0].description;
+    dayDescription.textContent = d.weather[0].description;
 
-    const icon = await fetch(
-      `http://openweathermap.org/img/wn/${days[i].weather[0].icon}@2x.png`,
+    const wIcon = await fetch(
+      `http://openweathermap.org/img/wn/${d.weather[0].icon}@2x.png`,
       { mode: 'cors' },
     );
 
     const dayIcon = new Image();
     dayIcon.className = 'day-icon';
-    dayIcon.src = icon.url;
+    dayIcon.src = wIcon.url;
     dayContainer.appendChild(dayIcon);
-  }
+  });
 
   // event listeners
   const dayTemperatures = document.querySelectorAll('.day-temperature');
@@ -159,6 +161,15 @@ async function getData(location) {
     scaleF.classList.remove('clicked');
   });
 }
+
+searchImage.addEventListener('click', () => {
+  if (searchInput.value !== '') {
+    weekPanel.replaceChildren();
+    console.log(weekPanel.children);
+    getGif(searchInput.value);
+    getData(searchInput.value);
+  }
+});
 
 getGif('New York');
 getData('New York');

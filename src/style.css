@@ -176,7 +176,7 @@ search-icon:active {
   padding-top: 2em;
 }
 
-.week-container {
+.day-container {
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -206,7 +206,7 @@ search-icon:active {
     padding-top: .2em;
   }
 
-  .week-container {
+  .day-container {
     flex-direction: row;
     align-items: center;
   }
