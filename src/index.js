@@ -73,12 +73,12 @@ async function getData(location) {
   try {
     // CURRENT WEATHER
     const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=48f6a27fca74b448539664c245fa0a54`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=48f6a27fca74b448539664c245fa0a54`,
       { mode: 'cors' },
     );
     const data = await response.json();
     const icon = await fetch(
-      `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
+      `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
       { mode: 'cors' },
     );
 
